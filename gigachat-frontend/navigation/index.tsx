@@ -8,15 +8,17 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable, View } from 'react-native';
-import { Octicons, MaterialCommunityIcons } from '@expo/vector-icons';
 
+import { ColorSchemeName, Pressable, View } from 'react-native';
+import { Octicons, MaterialCommunityIcons, AntDesign } from '@expo/vector-icons';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
 import TabOneScreen from '../screens/TabOneScreen';
 import TabTwoScreen from '../screens/TabTwoScreen';
+import TabThreeScreen from '../screens/TabThreeScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -71,7 +73,7 @@ function RootNavigator() {
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
-const BottomTab = createBottomTabNavigator<RootTabParamList>();
+const BottomTab = createMaterialTopTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
   const colorScheme = useColorScheme();
@@ -86,8 +88,8 @@ function BottomTabNavigator() {
         name="TabOne"
         component={TabOneScreen}
         options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Chats',
+          tabBarIcon: ({ color }) => <TabBarIcon name="message-processing-outline" color={color} />,
           headerRight: () => (
             <Pressable
               onPress={() => navigation.navigate('Modal')}
@@ -108,8 +110,16 @@ function BottomTabNavigator() {
         name="TabTwo"
         component={TabTwoScreen}
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Calls',
+          tabBarIcon: ({ color }) => <TabBarIcon name="phone" color={color} />,
+        }}
+      />
+      <BottomTab.Screen
+        name="TabThree"
+        component={TabThreeScreen}
+        options={{
+          title: 'Cash',
+          tabBarIcon: ({ color }) => <TabBarIcon name="cash" color={color} />,
         }}
       />
     </BottomTab.Navigator>
@@ -123,5 +133,5 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <MaterialCommunityIcons size={22} style={{ marginBottom: -3 }} {...props} />;
 }
