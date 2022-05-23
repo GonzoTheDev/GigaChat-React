@@ -4,7 +4,6 @@
  *
  */
 import { FontAwesome } from '@expo/vector-icons';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
@@ -16,9 +15,9 @@ import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
 import ModalScreen from '../screens/ModalScreen';
 import NotFoundScreen from '../screens/NotFoundScreen';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import TabThreeScreen from '../screens/TabThreeScreen';
+import ChatsScreen from '../screens/ChatsScreen';
+import CallsScreen from '../screens/CallsScreen';
+import CashScreen from '../screens/CashScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 
@@ -52,7 +51,7 @@ function RootNavigator() {
       }
 
     }}>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ 
+      <Stack.Screen name="Root" component={TopTabNavigator} options={{ 
         title: "GigaChat", 
         headerRight: () => (
           <View style={{flexDirection: 'row', width: 60, justifyContent: 'space-between', marginRight: 10}}>
@@ -73,21 +72,24 @@ function RootNavigator() {
  * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
  * https://reactnavigation.org/docs/bottom-tab-navigator
  */
-const BottomTab = createMaterialTopTabNavigator<RootTabParamList>();
+const TopTab = createMaterialTopTabNavigator<RootTabParamList>();
 
-function BottomTabNavigator() {
+function TopTabNavigator() {
   const colorScheme = useColorScheme();
 
   return (
-    <BottomTab.Navigator
-      initialRouteName="TabOne"
+    <TopTab.Navigator
+      initialRouteName="Chats"
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme].tint,
+        tabBarIndicatorStyle: {
+          backgroundColor: Colors[colorScheme].tint,
+        }
       }}>
-      <BottomTab.Screen
-        name="TabOne"
-        component={TabOneScreen}
-        options={({ navigation }: RootTabScreenProps<'TabOne'>) => ({
+      <TopTab.Screen
+        name="Chats"
+        component={ChatsScreen}
+        options={({ navigation }: RootTabScreenProps<'Chats'>) => ({
           title: 'Chats',
           tabBarIcon: ({ color }) => <TabBarIcon name="message-processing-outline" color={color} />,
           headerRight: () => (
@@ -106,23 +108,23 @@ function BottomTabNavigator() {
           ),
         })}
       />
-      <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoScreen}
+      <TopTab.Screen
+        name="Calls"
+        component={CallsScreen}
         options={{
           title: 'Calls',
           tabBarIcon: ({ color }) => <TabBarIcon name="phone" color={color} />,
         }}
       />
-      <BottomTab.Screen
-        name="TabThree"
-        component={TabThreeScreen}
+      <TopTab.Screen
+        name="Cash"
+        component={CashScreen}
         options={{
           title: 'Cash',
           tabBarIcon: ({ color }) => <TabBarIcon name="cash" color={color} />,
         }}
       />
-    </BottomTab.Navigator>
+    </TopTab.Navigator>
   );
 }
 
@@ -130,7 +132,7 @@ function BottomTabNavigator() {
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+  name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
   color: string;
 }) {
   return <MaterialCommunityIcons size={22} style={{ marginBottom: -3 }} {...props} />;
