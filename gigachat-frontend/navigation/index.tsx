@@ -18,8 +18,10 @@ import NotFoundScreen from '../screens/NotFoundScreen';
 import ChatsScreen from '../screens/ChatsScreen';
 import CallsScreen from '../screens/CallsScreen';
 import CashScreen from '../screens/CashScreen';
+import ChatRoomScreen from '../screens/ChatRoomScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
+import { RotateInUpLeft } from 'react-native-reanimated';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -60,6 +62,20 @@ function RootNavigator() {
           </View>
           )
         }} />
+      <Stack.Screen 
+        name="ChatRoom"
+        component={ChatRoomScreen}
+        options={({ route }) => ({
+          title: route.params.name,
+          headerRight: () => (
+            <View style={{flexDirection: 'row', width: 100, justifyContent: 'space-between'}}>
+              <MaterialCommunityIcons name="phone" size={22} color={'white'} />
+              <MaterialCommunityIcons name="video" size={22} color={'white'} />
+              <MaterialCommunityIcons name="dots-vertical" size={22} color={'white'} />
+            </View>
+          )
+        })} 
+      />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
