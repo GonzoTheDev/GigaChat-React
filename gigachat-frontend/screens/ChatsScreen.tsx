@@ -7,16 +7,21 @@ import ChatListItem from '../components/ChatListItem';
 
 import chatRooms from '../data/ChatRooms';
 import moment from 'moment';
+import NewMessageButton from '../components/NewMessageButton';
+
+
+const sortedItems = chatRooms.sort((a, b) => moment(b.lastMessage.createdAt) - moment(a.lastMessage.createdAt));
 
 
 export default function ChatsScreen({ navigation }: RootTabScreenProps<'Chats'>) {
   return (
     <View style={styles.container}>
       <FlatList 
-      data={chatRooms} 
+      data={sortedItems} 
       renderItem={({ item }) => <ChatListItem chatRoom={item} />}
       keyExtractor={( item ) => item.id}
       />
+      <NewMessageButton />
     </View>
   );
 }

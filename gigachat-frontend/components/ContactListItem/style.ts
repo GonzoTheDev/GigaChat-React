@@ -3,7 +3,7 @@ import { StyleSheet, useWindowDimensions } from "react-native";
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        width: "92%",
+        width: "100%",
         justifyContent: 'space-between',
         padding: 10,
     },
@@ -23,19 +23,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
     },
-    lastMessage: {
+    status: {
         fontSize: 16,
         color: 'grey',
-        width: 180,
-    },
-    time: {
-        fontSize: 16,
-        color: 'grey',
-    },
-    background: {
-        width: "100%",
-        height: "100%",
-    }
+      },
 });
 
 export default styles;

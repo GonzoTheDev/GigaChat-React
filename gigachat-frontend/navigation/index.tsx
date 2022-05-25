@@ -22,6 +22,7 @@ import ChatRoomScreen from '../screens/ChatRoomScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import { RotateInUpLeft } from 'react-native-reanimated';
+import ContactsScreen from '../screens/ContactsScreen';
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -76,6 +77,7 @@ function RootNavigator() {
           )
         })} 
       />
+      <Stack.Screen name="Contacts" component={ContactsScreen} />
       <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
       <Stack.Group screenOptions={{ presentation: 'modal' }}>
         <Stack.Screen name="Modal" component={ModalScreen} />
