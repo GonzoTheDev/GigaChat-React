@@ -69,9 +69,9 @@ function RootNavigator() {
           title: route.params.name,
           headerRight: () => (
             <View style={{flexDirection: 'row', width: 100, justifyContent: 'space-between'}}>
-              <MaterialCommunityIcons name="phone" size={22} color={'white'} />
-              <MaterialCommunityIcons name="video" size={22} color={'white'} />
-              <MaterialCommunityIcons name="dots-vertical" size={22} color={'white'} />
+              <MaterialCommunityIcons name="phone" size={24} color={'white'} />
+              <MaterialCommunityIcons name="video" size={24} color={'white'} />
+              <MaterialCommunityIcons name="dots-vertical" size={24} color={'white'} />
             </View>
           )
         })} 

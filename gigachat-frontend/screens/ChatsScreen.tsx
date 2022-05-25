@@ -6,6 +6,7 @@ import { RootTabScreenProps } from '../types';
 import ChatListItem from '../components/ChatListItem';
 
 import chatRooms from '../data/ChatRooms';
+import moment from 'moment';
 
 
 export default function ChatsScreen({ navigation }: RootTabScreenProps<'Chats'>) {
