@@ -10,6 +10,11 @@
       "StackName": "amplify-gigachatfrontend-dev-194625",
       "StackId": "arn:aws:cloudformation:eu-west-1:476397683826:stack/amplify-gigachatfrontend-dev-194625/cf00b540-e048-11ec-ba28-0aa6c416cd99",
       "AmplifyAppId": "d3o2alg39vgips"
+    },
+    "categories": {
+      "auth": {
+        "gigachatfrontenda0efcfd2": {}
+      }
     }
   }
 }
